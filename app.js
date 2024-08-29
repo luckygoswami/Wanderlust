@@ -1,5 +1,5 @@
 if (process.env.NODE_ENV != "production") {
-    require("dotenv").config();
+  require("dotenv").config();
 }
 
 const express = require("express");
@@ -31,43 +31,43 @@ app.use(express.static(path.join(__dirname, "/public")));
 const mongo_url = process.env.ATLASDB_URL;
 
 main()
-    .then(() => {
-        console.log("connected to db");
-    })
-    .catch((err) => {
-        console.log(`there's an error`);
-    });
+  .then(() => {
+    console.log("connected to db");
+  })
+  .catch((err) => {
+    console.log(`error while connecting to db`);
+  });
 
 async function main() {
-    await mongoose.connect(mongo_url);
+  await mongoose.connect(mongo_url);
 }
 
 const store = MongoStore.create({
-    mongoUrl: mongo_url,
-    crypto: {
-        secret: process.env.SECRET,
-    },
-    touchAfter: 24 * 3600,
+  mongoUrl: mongo_url,
+  crypto: {
+    secret: process.env.SECRET,
+  },
+  touchAfter: 24 * 3600,
 });
 
 store.on("error", () => {
-    console.log("Error in mongo session store", err);
+  console.log("Error in mongo session store", err);
 });
 
 const sessionOptions = {
-    store,
-    secret: process.env.SECRET,
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-        expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
-        maxAge: 7 * 24 * 60 * 60 * 1000,
-        httpOnly: true,
-    },
+  store,
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+    httpOnly: true,
+  },
 };
 
 app.get("/", (req, res) => {
-    res.redirect("/listings");
+  res.redirect("/listings");
 });
 
 app.use(session(sessionOptions));
@@ -82,10 +82,10 @@ passport.deserializeUser(User.deserializeUser());
 
 //To define the local variables
 app.use((req, res, next) => {
-    res.locals.success = req.flash("success");
-    res.locals.error = req.flash("error");
-    res.locals.currUser = req.user;
-    next();
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  res.locals.currUser = req.user;
+  next();
 });
 
 app.use("/listings", listingsRouter);
@@ -93,14 +93,14 @@ app.use("/listings/:id/reviews", reviewsRouter);
 app.use("/", usersRouter);
 
 app.all("*", (req, res, next) => {
-    next(new ExpressError(404, "Page Not Found!"));
+  next(new ExpressError(404, "Page Not Found!"));
 });
 
 app.use((err, req, res, next) => {
-    let { statusCode = 500, message = "oops! something went wrong." } = err;
-    res.status(statusCode).render("error.ejs", { message });
+  let { statusCode = 500, message = "oops! something went wrong." } = err;
+  res.status(statusCode).render("error.ejs", { message });
 });
 
 app.listen(8080, () => {
-    console.log("listening to port 8080");
+  console.log("listening to port 8080");
 });
