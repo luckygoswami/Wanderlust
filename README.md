@@ -2,19 +2,22 @@
 
 Wanderlust is a dynamic web application designed to help users explore and share exciting travel destinations. Users can browse, review, and share their own experiences at different locations, creating a community-driven travel platform.
 
-![Homepage](https://github.com/luckygoswami/assets/blob/main/Wanderlust/homepageView.png?raw=true)
-![Login page](https://github.com/luckygoswami/assets/blob/main/Wanderlust/loginView.png?raw=true)
-![create listing page](https://github.com/luckygoswami/assets/blob/main/Wanderlust/createView.png?raw=true)
-![Lisitng details page](https://github.com/luckygoswami/assets/blob/main/Wanderlust/listingView.png?raw=true)
-
 ## Table of Contents
 
+- [Screenshots](#screenshots)
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Technologies Used](#technologies-used)
 - [Contributing](#contributing)
 - [Contact](#contact)
+
+## Screenshots
+
+![Homepage](https://github.com/luckygoswami/assets/blob/main/Wanderlust/homepageView.png?raw=true)
+![Login page](https://github.com/luckygoswami/assets/blob/main/Wanderlust/loginView.png?raw=true)
+![create listing page](https://github.com/luckygoswami/assets/blob/main/Wanderlust/createView.png?raw=true)
+![Lisitng details page](https://github.com/luckygoswami/assets/blob/main/Wanderlust/listingView.png?raw=true)
 
 ## Features
 
@@ -51,7 +54,7 @@ Wanderlust is a dynamic web application designed to help users explore and share
    CLOUD_NAME=<your cloud name>
    CLOUD_API_KEY=<your cloud api key>
    CLOUD_API_SECRET=<your cloud api secret code>
-   SECRET=mySuperSecretKey
+   SECRET=<your secret key>
    ```
 
 5. Start the MongoDB server:
